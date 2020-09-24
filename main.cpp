@@ -50,32 +50,29 @@ void atsitiktiniaiND(duomuo A[], int i, int m) {
 }
 
 
-void naudojantMediana(duomuo A[], int m, int n) {
+void naudojantMediana(duomuo A[], int i, int m) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
-    for (int i = 0; i < n; i++) {
-        if (m == 1) A[i].paz = A[i].nd[0];
-        else {
-            sort(A[i].nd, A[i].nd + m);
-            if (m % 2 != 0) {
-                A[i].paz = A[i].nd[m / 2];
-            }
-            else {
-                A[i].paz = A[i].nd[m / 2] + A[i].nd[m / 2 - 1] / 2;
-            }
+    if (m == 1) A[i].paz = A[i].nd[0];
+    else {
+        sort(A[i].nd, A[i].nd + m);
+        if (m % 2 != 0) {
+            A[i].paz = A[i].nd[m / 2];
         }
-        A[i].paz = A[i].paz * 0.4 + A[i].egz * 0.6;
+        else {
+            A[i].paz = (A[i].nd[m / 2] + A[i].nd[m / 2 - 1]) / 2;
+        }
     }
+    A[i].paz = A[i].paz * 0.4 + A[i].egz * 0.6;
 }
 
 
-void naudojantVidurki(duomuo A[], int m, int n) {
+
+void naudojantVidurki(duomuo A[], int i, int m) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            A[i].paz = A[i].paz + A[i].nd[j];
-        }
-        A[i].paz = A[i].paz * 0.4 / m + A[i].egz * 0.6;
+    for (int j = 0; j < m; j++) {
+        A[i].paz = A[i].paz + A[i].nd[j];
     }
+    A[i].paz = A[i].paz * 0.4 / m + A[i].egz * 0.6;
 }
 
 
@@ -118,7 +115,7 @@ int main()
         }
         /* Galima apskaiciuoti galutini pazymi naudojant namu darbu vidurki su naudojantVidurki()
         arba naudojant mediana su naudojantMediana() */
-        if (m > 0) naudojantMediana(Stud, m, n);
+        if (m > 0) naudojantMediana(Stud, i, m);
         else Stud[i].paz =  Stud[i].egz;
     }
     // Paskutiniam funkcijos argumentui naudoti pasirinkto pazymio skaiciavimo tipo pavadinima
