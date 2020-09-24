@@ -23,21 +23,35 @@ struct duomuo {
 };
 
 
+void teisingasIvedimas() {
+    // Skirta naudoti kai tikrinima ar ivestas sveikas skaicius
+    cin.clear();
+    cin.ignore(80, '\n');
+    cout << "Iveskite sveikaji skaiciu: ";
+}
+
+
 void ivedamiND(duomuo A[],int i, int m) {
+    // Leidzia ivesti namu darbu pazymius rankiniu budu 
     cout << "Iveskite studento namu darbu pazymius: \n";
     for (int j = 0; j < m; j++) {
-        cin >> A[i].nd[j];
+        while (!(cin >> A[i].nd[j])) {
+            teisingasIvedimas();
+        }
     }
 }
 
 
 void atsitiktiniaiND(duomuo A[], int i, int m) {
+    // Sugeneruoja atsitiktinius namu darbu pazymius 
     for (int j = 0; j < m; j++) {
         A[i].nd[j] = (rand() % 10) + 1;
     }
 }
 
+
 void naudojantMediana(duomuo A[], int m, int n) {
+    // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
     for (int i = 0; i < n; i++) {
         if (m == 1) A[i].paz = A[i].nd[0];
         else {
@@ -53,7 +67,9 @@ void naudojantMediana(duomuo A[], int m, int n) {
     }
 }
 
+
 void naudojantVidurki(duomuo A[], int m, int n) {
+    // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             A[i].paz = A[i].paz + A[i].nd[j];
@@ -64,6 +80,7 @@ void naudojantVidurki(duomuo A[], int m, int n) {
 
 
 void isvedimas(duomuo A[], int n, string tipas) {
+    // Isveda galutinius pazymius*/
     cout << setw(15) << left << "Pavarde";
     cout << setw(15) << left << "Vardas";
     cout << "Galutinis " << tipas << endl;
@@ -79,23 +96,32 @@ int main()
     duomuo *Stud;
     int n,m;
     cout << "Kiek studentu norite ivesti? ";
-    cin >> n;
+    while (!(cin >> n)) {
+        teisingasIvedimas();
+    }
     cout << "Kiek namu darbu buvo uzduota? ";
-    cin >> m;
+    while (!(cin >> m)) {
+        teisingasIvedimas();
+    }
     Stud = new duomuo[n];
     for (int i = 0; i < n; i++) {
         cout << "Iveskite studento varda ir pavarde: \n";
         cin >> Stud[i].vardas;
         cout << "Iveskite studento pavarde: \n";
         cin >> Stud[i].pav;
-        /*atsitiktiniaiND(Stud, i, m);*/
-        if(m != 0) ivedamiND(Stud, i, m);
+        /* Galima arba ivesti pazymius rankiniu budu naudojant ivedamiND()
+        arba juos sugeneruoti atsitiktinai naudojant atsitiktiniaiND() */
+        if (m != 0) ivedamiND(Stud, i, m);
         cout << "Iveskite studento egzamino pazymi: \n";
-        cin >> Stud[i].egz;
-        /*if (m > 0) naudojantVidurki(Stud, m, n)*/
+        while (!(cin >> Stud[i].egz)) {
+            teisingasIvedimas();
+        }
+        /* Galima apskaiciuoti galutini pazymi naudojant namu darbu vidurki su naudojantVidurki()
+        arba naudojant mediana su naudojantMediana() */
         if (m > 0) naudojantMediana(Stud, m, n);
-        else Stud[i].paz =  Stud[i].egz * 0.6;
+        else Stud[i].paz =  Stud[i].egz;
     }
+    // Paskutiniam funkcijos argumentui naudoti pasirinkto pazymio skaiciavimo tipo pavadinima
     isvedimas(Stud, n, "(Med.)");
 }
 
