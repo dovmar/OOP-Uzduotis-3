@@ -2,9 +2,9 @@
 
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
-[0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
-
 [0.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.2)
+
+[0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
 
 ### Naujausios versijos naudojimosi instrukcija
 
