@@ -1,12 +1,12 @@
-# OOP-Uzduotis-1 v0.2
+# OOP-Uzduotis-1
 
-### Naudojimosi instrukcija
+Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
-Programa gali nuskaityti studentų duomenis iš failų kuriuose:
-- Stulpeliai atskirti tarpais
-- 1 ir 2 stulpeliai yra studento vardas ir pavardė
-- n sekančių stulpelių skirta namų darbų pažymiams
-- Paskutinis stulpelis skirtas egzamino pažymiui
+[0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
+
+[0.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.2)
+
+### Naujausios versijos naudojimosi instrukcija
 
 Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
 
