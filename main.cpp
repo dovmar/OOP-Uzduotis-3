@@ -24,7 +24,7 @@ struct duomuo {
     string pav;
     vector <int> nd;
     int egz;
-    float paz = 0;
+    float paz;
 };
 
 void teisingasIvedimas() {
@@ -54,9 +54,11 @@ void atsitiktiniaiND(vector<duomuo> &A, int i, int m) {
     }
 }
 
-void naudojantMediana(vector<duomuo> &A, int i, int m) {
+float naudojantMediana(vector<duomuo> &A, int i) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
-    if (m == 1) A[i].paz = A[i].nd[0];
+    int m = A[i].nd.size();
+    if (m == 0) A[i].paz = 0;
+    else if (m == 1) A[i].paz = A[i].nd[0];
     else {
         sort(A[i].nd.begin(),A[i].nd.end());
         if (m % 2 != 0) {
@@ -67,18 +69,26 @@ void naudojantMediana(vector<duomuo> &A, int i, int m) {
         }
     }
     A[i].paz = A[i].paz * 0.4 + A[i].egz * 0.6;
+    return A[i].paz;
 }
 
-void naudojantVidurki(vector<duomuo> &A, int i, int m) {
+float naudojantVidurki(vector<duomuo> &A, int i) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
-    for (int j = 0; j < m; j++) {
-        A[i].paz = A[i].paz + A[i].nd[j];
+    int m = A[i].nd.size();
+    if (m == 0) A[i].paz = A[i].egz;
+    else {
+        A[i].paz = 0;
+        for (auto paz : A[i].nd) {
+            A[i].paz = A[i].paz + paz;
+        }
+        A[i].paz = A[i].paz * 0.4 / m  + A[i].egz * 0.6;
     }
-    A[i].paz = A[i].paz * 0.4 / m + A[i].egz * 0.6;
+    return A[i].paz;
 }
 
 
 void ivedimas(vector<duomuo> &A, int &n) {
+    // Ivedimas rankiniu budu
     int m;
     cout << "Kiek studentu norite ivesti? ";
     while (!(cin >> n)) {
@@ -101,22 +111,18 @@ void ivedimas(vector<duomuo> &A, int &n) {
         while (!(cin >> A[i].egz)) {
             teisingasIvedimas();
         }
-        /* Galima apskaiciuoti galutini pazymi naudojant namu darbu vidurki su naudojantVidurki()
-        arba naudojant mediana su naudojantMediana() */
-        if (m > 0) naudojantMediana(A, i, m);
-        else A[i].paz = A[i].egz;
     }
 }
 
 
-void isvedimas(vector<duomuo> A, int n, string tipas) {
-    // Isveda galutinius pazymius*/
+void isvedimas(vector<duomuo> A, int n, string tipas = "(Vid.)") {
+    // Isveda galutinius pazymius i ekrana*/
     cout << setw(15) << left << "Pavarde";
     cout << setw(15) << left << "Vardas";
     cout << "Galutinis " << tipas << endl;
     cout << setfill('-')<< setw(50) << "-" << setfill(' ') << endl;
     for (int i = 0; i < n; i++) {
-        cout << setw(15) << left << A[i].pav << setw(15) << left << A[i].vardas << std::setprecision(3) << A[i].paz << endl;
+        cout << setw(15) << left << A[i].pav << setw(15) << left << A[i].pav << naudojantVidurki(A,i) << std::setprecision(3) << A[i].paz << endl;
     }
 }
 
@@ -135,6 +141,7 @@ int gautiNamuDarbuKieki(string s) {
 
 
 void nuskaitytiFaila(vector<duomuo> &A,int &n, string failoPav) {
+    // Nuskaito duomenis is failo
     ifstream skait;
     string pirmaEil;
     skait.open(failoPav);
@@ -143,8 +150,8 @@ void nuskaitytiFaila(vector<duomuo> &A,int &n, string failoPav) {
         exit(0);
     }
     int input;
+    int m; //uzduociu kiekis
     n = 0; // studentu kiekis
-    int m; // namu darbu kiekis
     getline(skait, pirmaEil);
     m = gautiNamuDarbuKieki(pirmaEil);
     while(!skait.eof()) {
@@ -155,8 +162,6 @@ void nuskaitytiFaila(vector<duomuo> &A,int &n, string failoPav) {
             A[n].nd.push_back(input);
         }
         skait >> A[n].egz;
-        if (m > 0) naudojantVidurki(A, n, m);
-        else A[n].paz = A[n].egz;
         n++;
     }
     skait.close();
@@ -169,16 +174,19 @@ bool palyginti(duomuo a, duomuo b){
         return 0;
 }
 
-void isvestiFaila(vector<duomuo> A,int n,string tipas) {
+void isvestiFaila(vector<duomuo> A,int n) {
+    // Isveda studentu rezultatus i faila
     ofstream isvest;
     isvest.open("rezultatai.txt");
     sort(A.begin(), A.end(),palyginti);
     isvest << setw(15) << left << "Pavarde";
     isvest << setw(15) << left << "Vardas";
-    isvest << "Galutinis " << tipas << endl;
+    isvest << setw(15) << left << "Galutinis (Vid.) ";
+    isvest << "Galutinis (Med.)" << endl;
     isvest << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     for (int i = 0; i < n; i++) {
-        isvest << setw(15) << left << A[i].pav << setw(15) << left << A[i].vardas << std::setprecision(3) << A[i].paz << endl;
+        isvest << setw(15) << left << A[i].pav << setw(15) << left << A[i].vardas 
+            << setw(15) << left << std::setprecision(3) << naudojantVidurki(A,i) << std::setprecision(3) << naudojantMediana(A,i) << endl;
     }
     isvest.close();
 }
@@ -187,8 +195,8 @@ int main()
 {
     int n;
     vector <duomuo> Stud;
-    nuskaitytiFaila(Stud,n,"kursiokai.txt");
-    isvestiFaila(Stud, n, "(Med.)");
+    nuskaitytiFaila(Stud,n,"studentai.txt");
+    isvestiFaila(Stud,n);
     //ivedimas(Stud,n);
-    //isvedimas(Stud, n,"(Med.)");
+    //isvedimas(Stud, n);
 }
