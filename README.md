@@ -11,14 +11,14 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
 
 ```c++
-/*nuskaitytiFaila(Stud,"studentai.txt");
-    for (int i = 0; i < Stud.size(); i++) {
-        naudojantVidurki(Stud, i);
-        naudojantMediana(Stud, i);
+nuskaitytiFaila(Stud,"studentai.txt");
+for (int i = 0; i < Stud.size(); i++) {
+    naudojantVidurki(Stud, i);
+    naudojantMediana(Stud, i);
     }
-    Stud2 = padalinti(Stud);
-    isvestiFaila(Stud, "islaike.txt");
-    isvestiFaila(Stud2, "neislaike.txt");
+Stud2 = padalinti(Stud);
+isvestiFaila(Stud, "islaike.txt");
+isvestiFaila(Stud2, "neislaike.txt");
 ```
 
 Su programa galima sugeneruoti duomenų failą su atsitiktiniais studentų duomenimis.
