@@ -33,7 +33,7 @@ Naudojant funkciją **visasLaikas()** galima sužinoti kiek laiko programa užtr
 visasLaikas(Stud, Stud2,"generuotas1000.txt")
 ```
 
-Programos veikimo spartos analize:
+Programos veikimo spartos analizė:
 
 ![l](programos_sparta.png)
 
