@@ -8,6 +8,37 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 
 ### Naujausios versijos naudojimosi instrukcija
 
+Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
+
+```c++
+/*nuskaitytiFaila(Stud,"studentai.txt");
+    for (int i = 0; i < Stud.size(); i++) {
+        naudojantVidurki(Stud, i);
+        naudojantMediana(Stud, i);
+    }
+    Stud2 = padalinti(Stud);
+    isvestiFaila(Stud, "islaike.txt");
+    isvestiFaila(Stud2, "neislaike.txt");
+```
+
+Su programa galima sugeneruoti duomenų failą su atsitiktiniais studentų duomenimis.
+
+```c++
+sugeneruotiFaila(1000, 10, "generuotas1000.txt");
+```
+
+Naudojant funkciją **visasLaikas()** galima sužinoti kiek laiko programa užtrunka vykdydama skirtingus žingsnius.
+
+```c++
+visasLaikas(Stud, Stud2,"generuotas1000.txt")
+```
+
+Programos veikimo spartos analize:
+
+![l](programos_sparta.png)
+
+### Senesnės versijos naudojimosi instrukcija
+
 Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
 
 Norint nuskaityti studentų duomenis iš failo, naudoti funciją **nuskaitytiFaila()**. Pvz. jeigu mūsų tinkamo formato failo vardas "studentai.txt":
