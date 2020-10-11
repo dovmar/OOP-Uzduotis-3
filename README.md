@@ -37,7 +37,7 @@ Programos veikimo spartos analizė:
 
 ![l](programos_sparta.png)
 
-### v0.2 versijos naudojimosi instrukcija
+### V0.2 naudojimosi instrukcija
 
 Programa gali nuskaityti/išvesti studentų duomenys iš failų.  
 
@@ -61,7 +61,7 @@ ivedimas(Stud,n);
 isvestiFaila(Stud,n);
 ```
 
-### v0.1 versijos naudojimosi instrukcija
+### V0.1 naudojimosi instrukcija
 
 Programa skirta įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
 
