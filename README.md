@@ -63,7 +63,7 @@ isvestiFaila(Stud,n);
 
 ### V0.1 naudojimosi instrukcija
 
-Programa skirta įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
+Programa skirta rankiniu būdu įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
 
 Pateiktos dvi programos versijos:
 - main.cpp naudoja C masyvus
