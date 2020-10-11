@@ -2,14 +2,17 @@
 
 
 void pradeti(time_point& start) {
+    // Issaugo dabartini laika
     start = hrClock::now();
 }
 
 double praejoLaiko(time_point start) {
+    // Apskaiciuoja kiek praejo laiko
     return durationDouble(hrClock::now() - start).count();
 }
 
 void visasLaikas(vector<duomuo> A, vector<duomuo> A2, string failoPav) {
+    // Skirta matuoti kiek laiko uztrunka atlikti tam tikrus veiksmus nurodytam studentu duomenu failui
     time_point start;
     time_point task_start;
     pradeti(start);

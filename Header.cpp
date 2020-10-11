@@ -85,7 +85,7 @@ void ivedimasRanka(vector<duomuo>& A) {
 }
 
 void isvedimasEkrane(vector<duomuo> A, string tipas) {
-    // Isveda galutinius pazymius i ekrana*/
+    // Isveda galutinius pazymius i ekrana
     cout << setw(15) << left << "Pavarde";
     cout << setw(15) << left << "Vardas";
     cout << "Galutinis " << tipas << endl;
@@ -103,16 +103,16 @@ void isvedimasEkrane(vector<duomuo> A, string tipas) {
 }
 
 
-int gautiNamuDarbuKieki(string s) {
-    /* Analizuoja pirma nuskaityto failo eilute norint gauti namu darbu kieki*/
-    bool praeitas = 0;
+int gautiStulpeliuKieki(string s) {
+    //Analizuoja pirma nuskaityto failo eilute norint gauti namu darbu kieki
+    bool praeitas = 0; // Ar praeitas simbolis nebuvo tarpas
     int kiekis = 0;
     for (int i = 0; i < s.size(); i++) {
         if (praeitas == 1 & (s[i] == (char)' ' | s[i] == '\t') ) kiekis = kiekis + 1;
-        if (s[i] == (char)' ') praeitas = 0;
+        if (s[i] == (char)' ' | s[i] == '\t') praeitas = 0;
         else praeitas = 1;
     }
-    return kiekis - 2;
+    return kiekis+1;
 }
 
 void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
@@ -128,11 +128,18 @@ void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
     int m; //uzduociu kiekis
     int n = 0; // studentu kiekis
     getline(skait, pirmaEil);
-    m = gautiNamuDarbuKieki(pirmaEil);
+    try {
+        m = gautiStulpeliuKieki(pirmaEil);
+        if (m < 3) throw (m);
+    }
+    catch (int m) {
+        cout << "Nepavyko nustatyti stulpelio kiekio" << endl;
+        cout << "Rasta stulpeliu: " << m;
+    }
     while (!skait.eof()) {
         A.push_back(duomuo());
         skait >> A[n].vardas >> A[n].pav;
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < m-3; j++) {
             skait >> input;
             A[n].nd.push_back(input);
         }
@@ -143,6 +150,7 @@ void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
 }
 
 bool palyginti(duomuo a, duomuo b) {
+    // Skirta palyginti du studentus pagal pavardes
     if (a.pav < b.pav)
         return 1;
     else
@@ -168,11 +176,13 @@ void isvestiFaila(vector<duomuo> A,string failoPav = "rezultatai.txt") {
 
 
 bool arIslaike(duomuo stud,string tipas) {
+    // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
     if (tipas == "(Vid.)") return stud.paz_vid < 5;
     else return stud.paz_med < 5;
 }
 
 vector<duomuo> padalinti(vector<duomuo>& A, string tipas) {
+    // Padalija studentus i dvi grupes pagal pazymius
     vector<duomuo> islaike, neislaike;
     for (auto stud : A) {
         if (arIslaike(stud, tipas)) neislaike.push_back(stud);
