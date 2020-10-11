@@ -37,7 +37,9 @@ Programos veikimo spartos analizė:
 
 ![l](programos_sparta.png)
 
-### Senesnės versijos naudojimosi instrukcija
+### v0.2 versijos naudojimosi instrukcija
+
+Programa gali nuskaityti/išvesti studentų duomenys iš failų.  
 
 Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
 
@@ -57,4 +59,22 @@ int n;
 vector <duomuo> Stud;
 ivedimas(Stud,n);
 isvestiFaila(Stud,n);
+```
+
+### v0.1 versijos naudojimosi instrukcija
+
+Programa skirta įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
+
+Pateiktos dvi programos versijos:
+- main.cpp naudoja C masyvus
+- main_vector.cpp naudoja std::vector konteinerį
+
+Galimi variantai kaip apskaičiuoti galutinį pažymį:
+
+```c++
+isvedimas(Stud, n, "(Med.)");
+```
+
+```c++
+isvedimas(Stud, n, "(Vid.)");
 ```
