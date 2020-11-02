@@ -4,14 +4,17 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <list>
 #include <algorithm>
 #include <random>
 #include <fstream>
+#include <exception>
 
 using std::cout;
 using std::cin;
 using std::string;
 using std::vector;
+using std::list;
 using std::endl;
 using std::setfill;
 using std::left;
@@ -29,16 +32,19 @@ struct duomuo {
     float paz_med;
 };
 
+using container = list<duomuo>;
+
 void teisingasIvedimas();
-void ivedamiND(vector<duomuo>&,int,int);
-void atsitiktiniaiND(vector<duomuo>&, int, int);
-void naudojantMediana(vector<duomuo>&, int);
-void naudojantVidurki(vector<duomuo>&, int);
-void ivedimasRanka(vector<duomuo>&);
-void isvedimasEkrane(vector<duomuo>,string = "(Vid.)" );
-int gautiNamuDarbuKieki(string);
-void nuskaitytiFaila(vector<duomuo>&, string);
+void ivedamiND(container&,int,int);
+void naudojantMediana(duomuo&);
+void naudojantVidurki(duomuo&);
+void ivedimasRanka(container&);
+void isvedimasEkrane(container&,string = "(Vid.)" );
+int gautiStulpeliuKieki(string);
+void nuskaitytiFaila(container&, string);
 bool palyginti(duomuo, duomuo);
-void isvestiFaila(vector<duomuo>,string);
-bool arIslaike(duomuo, string);
-vector<duomuo> padalinti(vector<duomuo>&, string = "(Vid.)");
+void isvestiFaila(container&,string);
+bool arIslaike(duomuo&, string);
+container padalinti(container&, string = "(Vid.)");
+void mySort(vector<duomuo>&);
+void mySort(list<duomuo>&);
