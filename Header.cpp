@@ -7,59 +7,42 @@ void teisingasIvedimas() {
     cout << "Iveskite sveikaji skaiciu: ";
 }
 
-void ivedamiND(vector<duomuo>& A, int i, int m) {
-    // Leidzia ivesti namu darbu pazymius rankiniu budu
-    int input;
-    cout << "Iveskite studento namu darbu pazymius: \n";
-    for (int j = 0; j < m; j++) {
-        while (!(cin >> input)) {
-            teisingasIvedimas();
-        }
-        A[i].nd.push_back(input);
-    }
-}
-
-void atsitiktiniaiND(vector<duomuo>& A, int i, int m) {
-    // Sugeneruoja atsitiktinius namu darbu pazymius 
-    for (int j = 0; j < m; j++) {
-        A[i].nd.push_back((rand() % 10) + 1);
-    }
-}
-
-void naudojantMediana(vector<duomuo>& A, int i) {
+void naudojantMediana(duomuo& A) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
-    int m = A[i].nd.size();
-    if (m == 0) A[i].paz_med = 0;
-    else if (m == 1) A[i].paz_med = A[i].nd[0];
+    int m = A.nd.size();
+    if (m == 0) A.paz_med = 0;
+    else if (m == 1) A.paz_med = A.nd[0];
     else {
-        sort(A[i].nd.begin(), A[i].nd.end());
+        sort(A.nd.begin(), A.nd.end());
         if (m % 2 != 0) {
-            A[i].paz_med = A[i].nd[m / 2];
+            A.paz_med = A.nd[m / 2];
         }
         else {
-            A[i].paz_med = (A[i].nd[m / 2] + A[i].nd[m / 2 - 1]) / 2;
+            A.paz_med = (A.nd[m / 2] + A.nd[m / 2 - 1]) / 2;
         }
     }
-    A[i].paz_med = A[i].paz_med * 0.4 + A[i].egz * 0.6;
+    A.paz_med = A.paz_med * 0.4 + A.egz * 0.6;
 }
 
-void naudojantVidurki(vector<duomuo>& A, int i) {
+void naudojantVidurki(duomuo& A) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
-    int m = A[i].nd.size();
-    if (m == 0) A[i].paz_vid = A[i].egz;
+    int m = A.nd.size();
+    if (m == 0) A.paz_vid = A.egz;
     else {
-        A[i].paz_vid = 0;
-        for (auto paz : A[i].nd) {
-            A[i].paz_vid = A[i].paz_vid + paz;
+        A.paz_vid = 0;
+        for (auto paz : A.nd) {
+            A.paz_vid = A.paz_vid + paz;
         }
-        A[i].paz_vid = A[i].paz_vid * 0.4 / m + A[i].egz * 0.6;
+        A.paz_vid = A.paz_vid * 0.4 / m + A.egz * 0.6;
     }
 }
 
-void ivedimasRanka(vector<duomuo>& A) {
+void ivedimasRanka(container& A) {
     // Ivedimas rankiniu budu
-    int m;
     int n;
+    int m;
+    int input;
+    duomuo stud;
     cout << "Kiek studentu norite ivesti? ";
     while (!(cin >> n)) {
         teisingasIvedimas();
@@ -69,35 +52,43 @@ void ivedimasRanka(vector<duomuo>& A) {
         teisingasIvedimas();
     }
     for (int i = 0; i < n; i++) {
-        A.push_back(duomuo());
         cout << "Iveskite studento varda ir pavarde: \n";
-        cin >> A[i].vardas;
+        cin >> stud.vardas;
         cout << "Iveskite studento pavarde: \n";
-        cin >> A[i].pav;
+        cin >> stud.pav;
         /* Galima arba ivesti pazymius rankiniu budu naudojant ivedamiND()
         arba juos sugeneruoti atsitiktinai naudojant atsitiktiniaiND() */
-        if (m != 0) ivedamiND(A, i, m);
+        if (m > 0) {
+            cout << "Iveskite studento namu darbu pazymius: \n";
+            for (int j = 0; j < m; j++) {
+                while (!(cin >> input)) {
+                    teisingasIvedimas();
+                }
+                stud.nd.push_back(input);
+            }
+        }
         cout << "Iveskite studento egzamino pazymi: \n";
-        while (!(cin >> A[i].egz)) {
+        while (!(cin >> stud.egz)) {
             teisingasIvedimas();
         }
+        A.push_back(stud);
     }
 }
 
-void isvedimasEkrane(vector<duomuo> A, string tipas) {
+void isvedimasEkrane(container& A, string tipas) {
     // Isveda galutinius pazymius i ekrana
     cout << setw(15) << left << "Pavarde";
     cout << setw(15) << left << "Vardas";
     cout << "Galutinis " << tipas << endl;
     cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     if (tipas == "(Vid.)") {
-        for (int i = 0; i < A.size(); i++) {
-            cout << setw(15) << left << A[i].vardas << setw(15) << left << A[i].pav << std::setprecision(3) << A[i].paz_vid << endl;
+        for (container::iterator it = A.begin(); it != A.end(); it++) {
+            cout << setw(15) << left << it->vardas << setw(15) << left << it->pav << std::setprecision(3) << it->paz_vid << endl;
         }
     }
     else {
-        for (int i = 0; i < A.size(); i++) {
-            cout << setw(15) << left << A[i].vardas << setw(15) << left << A[i].pav << std::setprecision(3) << A[i].paz_med << endl;
+        for (container::iterator it = A.begin(); it != A.end(); it++) {
+            cout << setw(15) << left << it->vardas << setw(15) << left << it->pav << std::setprecision(3) << it->paz_med << endl;
         }
     }
 }
@@ -115,7 +106,7 @@ int gautiStulpeliuKieki(string s) {
     return kiekis+1;
 }
 
-void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
+void nuskaitytiFaila(container& A, string failoPav) {
     // Nuskaito duomenis is failo
     ifstream skait;
     string pirmaEil;
@@ -125,8 +116,8 @@ void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
         exit(0);
     }
     int input;
-    int m; //uzduociu kiekis
-    int n = 0; // studentu kiekis
+    int m;
+    duomuo stud;
     getline(skait, pirmaEil);
     try {
         m = gautiStulpeliuKieki(pirmaEil);
@@ -137,14 +128,14 @@ void nuskaitytiFaila(vector<duomuo>& A, string failoPav) {
         cout << "Rasta stulpeliu: " << m;
     }
     while (!skait.eof()) {
-        A.push_back(duomuo());
-        skait >> A[n].vardas >> A[n].pav;
+        stud.nd.clear();
+        skait >> stud.vardas >> stud.pav;
         for (int j = 0; j < m-3; j++) {
             skait >> input;
-            A[n].nd.push_back(input);
+            stud.nd.push_back(input);
         }
-        skait >> A[n].egz;
-        n++;
+        skait >> stud.egz;
+        A.push_back(stud);
     }
     skait.close();
 }
@@ -157,37 +148,46 @@ bool palyginti(duomuo a, duomuo b) {
         return 0;
 }
 
-void isvestiFaila(vector<duomuo> A,string failoPav = "rezultatai.txt") {
+void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     // Isveda studentu rezultatus i faila
     ofstream isvest;
     isvest.open(failoPav);
-    sort(A.begin(), A.end(), palyginti);
+    mySort(A);
     isvest << setw(15) << left << "Pavarde";
     isvest << setw(15) << left << "Vardas";
     isvest << setw(15) << left << "Galutinis (Vid.) ";
     isvest << "Galutinis (Med.)" << endl;
     isvest << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
-    for (int i = 0; i < A.size(); i++) {
-        isvest << setw(15) << left << A[i].pav << setw(15) << left << A[i].vardas
-            << setw(15) << left << std::setprecision(3) << A[i].paz_vid << std::setprecision(3) << A[i].paz_med << endl;
+    for (container::iterator it = A.begin(); it != A.end(); it++) {
+        isvest << setw(15) << left << it->pav << setw(15) << left << it->vardas
+            << setw(15) << left << std::setprecision(3) << it->paz_vid << std::setprecision(3) << it->paz_med << endl;
     }
     isvest.close();
 }
 
-
-bool arIslaike(duomuo stud,string tipas) {
+bool arIslaike(duomuo& stud,string tipas) {
     // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
     if (tipas == "(Vid.)") return stud.paz_vid < 5;
     else return stud.paz_med < 5;
 }
 
-vector<duomuo> padalinti(vector<duomuo>& A, string tipas) {
+container padalinti(container& A, string tipas) {
     // Padalija studentus i dvi grupes pagal pazymius
-    vector<duomuo> islaike, neislaike;
-    for (auto stud : A) {
+    container islaike, neislaike;
+    for (duomuo& stud : A) {
         if (arIslaike(stud, tipas)) neislaike.push_back(stud);
         else islaike.push_back(stud);
     }
     A = islaike;
     return neislaike;
+}
+
+void mySort(vector<duomuo>& A) {
+    // Rusiuoja vektorius
+    sort(A.begin(), A.end(), palyginti);
+}
+
+void mySort(list<duomuo>& A) {
+    // Rusiuoja sarasus
+    A.sort(palyginti);
 }
