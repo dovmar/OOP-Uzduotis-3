@@ -10,6 +10,27 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 
 ### Naujausios versijos naudojimosi instrukcija
 
+Programa gali veikti ir su std::list konteineriu. Kokį konteinerį naudoti pasirinkti header.h faile:
+
+```c++
+using container = list<duomuo>;
+``` 
+arba
+
+```c++
+using container = vector<duomuo>
+```
+
+Programos sparta naudojant **std::vector**:
+
+![](vector_sparta.png)
+
+Programos sparta naudojant **std::list**:
+
+![](list_sparta.png)
+
+### V0.4 naudojimosi instrukcija
+ 
 Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
 
 ```c++
@@ -37,7 +58,7 @@ visasLaikas(Stud, Stud2,"generuotas1000.txt")
 
 Programos veikimo spartos analizė:
 
-![l](programos_sparta.png)
+![](programos_sparta.png)
 
 ### V0.2 naudojimosi instrukcija
 
