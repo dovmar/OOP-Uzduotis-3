@@ -8,4 +8,4 @@ using durationDouble = std::chrono::duration<double>;
 using time_point = std::chrono::time_point<hrClock>;
 
 double praejoLaiko(time_point);
-void visasLaikas(vector<duomuo>, vector<duomuo>, string);
+void visasLaikas(container&, container&, string);

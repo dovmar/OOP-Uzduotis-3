@@ -11,7 +11,7 @@ double praejoLaiko(time_point start) {
     return durationDouble(hrClock::now() - start).count();
 }
 
-void visasLaikas(vector<duomuo> A, vector<duomuo> A2, string failoPav) {
+void visasLaikas(container &A, container &A2, string failoPav) {
     // Skirta matuoti kiek laiko uztrunka atlikti tam tikrus veiksmus nurodytam studentu duomenu failui
     time_point start;
     time_point task_start;
@@ -19,9 +19,9 @@ void visasLaikas(vector<duomuo> A, vector<duomuo> A2, string failoPav) {
     nuskaitytiFaila(A, failoPav);
     cout << "Nuskaityti faila uztruko: " << praejoLaiko(start) << "s" << endl;
     pradeti(task_start);
-    for (int i = 0; i < A.size(); i++) {
-        naudojantVidurki(A, i);
-        naudojantMediana(A, i);
+    for (duomuo& stud : A) {
+      naudojantMediana(stud);
+       naudojantVidurki(stud);
     }
     cout << "Apskaiciuoti pazymius uztruko: " << praejoLaiko(task_start) << "s" << endl;
     pradeti(task_start);
