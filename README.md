@@ -29,6 +29,16 @@ Programos sparta naudojant **std::list**:
 
 ![](list_sparta.png)
 
+
+Sparos matavimui naudotos sistemos duomenys:
+
+```
+Processor:	Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)
+Installed Memory: 6.00GB
+Storage:	WDC PC SN520 SDAPMUW-256G-1101 SSD
+
+```
+
 ### V0.4 naudojimosi instrukcija
  
 Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
