@@ -4,11 +4,21 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 
 ## Įdiegimo instrukcija
 
+- Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-1/releases/).
+- Sukompiliuoti programą naudojant CMakeLists.txt failą.
+- Paleisti programą.
 
-### Naudojimosi instrukcija
+## Naudojimosi instrukcija
 
+- Pateikite tokio formato failą arba ji susigeneruokite su `sugeneruotiFaila()`
+```
+Pavardė     Vardas      ND1  ND2   ND3  ND4  ND5  Egzaminas
+Vardas1     Pavardė1    8    9     10   6    10   9
+Vardas2     Pavardė2    7    10    8    5    4    6
+Vardas2     Pavardė2    7    10    8    5    4    6
+```
 
-
+..... pabaigti
 
 ## Versijų istorija
 
