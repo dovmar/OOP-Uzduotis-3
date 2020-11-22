@@ -2,112 +2,86 @@
 
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
-[0.4 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.4)
+## Įdiegimo instrukcija
 
-[0.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.2)
 
-[0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
+### Naudojimosi instrukcija
 
-### Naujausios versijos naudojimosi instrukcija
 
-Programa gali veikti ir su std::list konteineriu. Kokį konteinerį naudoti pasirinkti header.h faile:
 
-```c++
-using container = list<duomuo>;
-``` 
-arba
 
-```c++
-using container = vector<duomuo>
+## Versijų istorija
+
+
+## [0.5 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.5)
+
+- Programa pritaikyta veikti ir naudojant std::list konteinerį.
+
+
+## [0.4 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.4)
+
+ 
+- Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
+
+
+- Su programa galima sugeneruoti duomenų failą su atsitiktiniais studentų duomenimis.
+
+
+- Naudojant funkciją **visasLaikas()** galima sužinoti kiek laiko programa užtrunka vykdydama skirtingus žingsnius.
+
+
+## [0.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.2)
+
+
+- Programa gali nuskaityti/išvesti studentų duomenys iš failų.  
+
+- Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
+
+- Norint nuskaityti studentų duomenis iš failo, naudoti funciją **nuskaitytiFaila()**. Pvz. jeigu mūsų tinkamo formato failo vardas "studentai.txt":
+
+- Studentų rezultatai įrašomi į failą su **isvestiFaila()**.
+
+- Duomenys nebūtinai turi būti ir įvedami iš failo ir rezultatai išvedami į failą. Pvz. duomenis galima įvesti ranka ir tada rezultatus įrašyti į failą arba atvikščiai.
+
+
+## [0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
+
+- Programa skirta rankiniu būdu įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
+
+* Pateiktos dvi programos versijos:
+ * main.cpp naudoja C masyvus
+ * main_vector.cpp naudoja std::vector konteinerį
+
+- Programa gali apskaičiuoti galutinį pažymį naudojant medianą arba vidurkį.
+
+
+
+## Programos spartos analizė
+
+Sparos matavimui naudotos sistemos duomenys:
+
 ```
+Processor:	Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)
+Memory:    6.00GB
+Storage:  	WDC PC SN520 SDAPMUW-256G-1101 SSD
+
+```
+
+Skirtingų programos atliekamų veiksmų trukmė:
+
+![](programos_sparta.png)
+
 
 Programos sparta naudojant **std::vector**:
 
 ![](vector_sparta.png)
+
 
 Programos sparta naudojant **std::list**:
 
 ![](list_sparta.png)
 
 
-Sparos matavimui naudotos sistemos duomenys:
+Studentų padalijimo į dvi dalis trukmė, naudojant skirtingas dalijimo strategijas:
 
-```
-Processor:	Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)
-Installed Memory: 6.00GB
-Storage:	WDC PC SN520 SDAPMUW-256G-1101 SSD
-
-```
-
-### V0.4 naudojimosi instrukcija
- 
-Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
-
-```c++
-nuskaitytiFaila(Stud,"studentai.txt");
-for (int i = 0; i < Stud.size(); i++) {
-    naudojantVidurki(Stud, i);
-    naudojantMediana(Stud, i);
-    }
-Stud2 = padalinti(Stud);
-isvestiFaila(Stud, "islaike.txt");
-isvestiFaila(Stud2, "neislaike.txt");
-```
-
-Su programa galima sugeneruoti duomenų failą su atsitiktiniais studentų duomenimis.
-
-```c++
-sugeneruotiFaila(1000, 10, "generuotas1000.txt");
-```
-
-Naudojant funkciją **visasLaikas()** galima sužinoti kiek laiko programa užtrunka vykdydama skirtingus žingsnius.
-
-```c++
-visasLaikas(Stud, Stud2,"generuotas1000.txt")
-```
-
-Programos veikimo spartos analizė:
-
-![](programos_sparta.png)
-
-### V0.2 naudojimosi instrukcija
-
-Programa gali nuskaityti/išvesti studentų duomenys iš failų.  
-
-Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
-
-Norint nuskaityti studentų duomenis iš failo, naudoti funciją **nuskaitytiFaila()**. Pvz. jeigu mūsų tinkamo formato failo vardas "studentai.txt":
-```c++
-nuskaitytiFaila(Stud,n,"studentai.txt");
-```
-
-Studentų rezultatai įrašomi į failą su **isvestiFaila()**.
-```c++
-isvestiFaila(Stud,n);
-```
-
-Duomenys nebūtinai turi būti ir įvedami iš failo ir rezultatai išvedami į failą. Pvz. duomenis galima įvesti ranka ir tada rezultatus įrašyti į failą arba atvikščiai.
-```c++
-int n;
-vector <duomuo> Stud;
-ivedimas(Stud,n);
-isvestiFaila(Stud,n);
-```
-
-### V0.1 naudojimosi instrukcija
-
-Programa skirta rankiniu būdu įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
-
-Pateiktos dvi programos versijos:
-- main.cpp naudoja C masyvus
-- main_vector.cpp naudoja std::vector konteinerį
-
-Galimi variantai kaip apskaičiuoti galutinį pažymį:
-
-```c++
-isvedimas(Stud, n, "(Med.)");
-```
-
-```c++
-isvedimas(Stud, n, "(Vid.)");
-```
+![](dalijimo_sparta.png)
