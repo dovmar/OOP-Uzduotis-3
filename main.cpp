@@ -10,7 +10,8 @@ int main()
     
 
     // Iprastas programos paleidimas
-             
+
+    sugeneruotiFaila(1000, 10, "generuotas1000.txt");
     nuskaitytiFaila(Stud,"generuotas1000.txt");
     for (Studentas& stud : Stud) {
         naudojantMediana(stud);
