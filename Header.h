@@ -51,3 +51,4 @@ container padalinti2(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
 container padalinti3(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
 void mySort(vector<Studentas>&);
 void mySort(list<Studentas>&);
+void paleisti(container&, container&);

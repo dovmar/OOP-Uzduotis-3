@@ -1,10 +1,11 @@
 #include "Header.h"
+#include "Generator.h"
 
 void teisingasIvedimas() {
     // Skirtas patikrinti ar ivestas sveikas skaicius
     cin.clear();
     cin.ignore(80, '\n');
-    cout << "Iveskite sveikaji skaiciu: ";
+    cout << "Iveskite tinkama sveikaji skaiciu: ";
 }
 
 
@@ -62,7 +63,7 @@ void ivedimasRanka(container& A) {
         if (m > 0) {
             cout << "Iveskite studento namu darbu pazymius: \n";
             for (int j = 0; j < m; j++) {
-                while (!(cin >> input)) {
+                while (!(cin >> input && input > 0 && input <= 10)) {
                     teisingasIvedimas();
                 }
                 stud.nd.push_back(input);
@@ -223,4 +224,55 @@ void mySort(vector<Studentas>& A) {
 void mySort(list<Studentas>& A) {
     // Rusiuoja sarasus
     A.sort(palyginti);
+}
+
+
+void paleisti(container& A,container& A2) {
+    // Budas paleisti programa su pagrindiniais pasirinkimais
+    int n;
+    int m;
+    string failoPav;
+    while (true) {
+        cout << "Kokiu budu norite pateikti studentu duomenis?" << endl;
+        cout << "1. Nuskaityti is failo" << endl;
+        cout << "2. Ivesti" << endl;
+        cin >> n;
+        if (n == 1) {
+            cout << "1. Pateikti esamo failo pavadinima" << endl;
+            cout << "2. Sugeneruoti faila" << endl;
+            cin >> n;
+            if (n == 1) {
+                cout << "Iveskite pilna failo pavadinima (iskaitant .txt)" << endl;
+                cin >> failoPav;
+                nuskaitytiFaila(A, failoPav);
+                break;
+            }
+            else if (n == 2) {
+                cout << "Kokio dydzio faila norite sugeneruoti? " << endl;
+                cin >> m;
+                sugeneruotiFaila(m,10,"generuotas.txt");
+                failoPav = "generuotas.txt";
+                nuskaitytiFaila(A, failoPav);
+                break;
+            }
+            else {
+                cout << "Tokio pasirinkimo nera. Iveskite is naujo" << endl;
+            }
+        }
+        else if (n == 2) {
+            ivedimasRanka(A);
+            break;
+        }
+        else {
+            cout << "Tokio pasirinkimo nera. Iveskite is naujo" << endl;
+        }
+    }
+    for (Studentas& stud : A) {
+        naudojantMediana(stud);
+        naudojantVidurki(stud);
+    }
+    A2 = padalinti3(A);
+    isvestiFaila(A, "islaike.txt");
+    isvestiFaila(A2, "neislaike.txt");
+    cout << "Rezultatai isvesti i failus 'islaike.txt' ir 'neislaike.txt'!";
 }

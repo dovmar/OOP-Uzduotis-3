@@ -5,13 +5,18 @@
 int main()
 {
     int n;
-    container Stud;
+    container Stud; //konteineris i kuri nuskaitomi studentu duomenys
     container Stud2; //konteineris laikyti neislaikiusiems studentams
     
 
-    // Iprastas programos paleidimas
+    // Paprastas programos paleidimas su pagrindiniais pasirinkimais
 
-    sugeneruotiFaila(1000, 10, "generuotas1000.txt");
+    paleisti(Stud, Stud2);
+
+
+    // Pvz kaip paleisti programa jeigu norima detalesniu pasirinkimu
+             
+    /*sugeneruotiFaila(1000, 10, "generuotas1000.txt");
     nuskaitytiFaila(Stud,"generuotas1000.txt");
     for (Studentas& stud : Stud) {
         naudojantMediana(stud);
@@ -20,7 +25,8 @@ int main()
     Stud2 = padalinti3(Stud);
     isvestiFaila(Stud, "islaike.txt");
     isvestiFaila(Stud2, "neislaike.txt");
-    
+    */
+
 
     //Skirtingu veiksmu spartos tikrinimas
 
