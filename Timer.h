@@ -1,6 +1,5 @@
 #include <chrono>
 #include "Header.h"
-
 #pragma once
 
 using hrClock = std::chrono::high_resolution_clock;

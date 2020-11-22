@@ -16,16 +16,12 @@ int main()
 
     // Pvz kaip paleisti programa jeigu norima detalesniu pasirinkimu
              
-    /*sugeneruotiFaila(1000, 10, "generuotas1000.txt");
-    nuskaitytiFaila(Stud,"generuotas1000.txt");
-    for (Studentas& stud : Stud) {
-        naudojantMediana(stud);
-        naudojantVidurki(stud);
-    }
-    Stud2 = padalinti3(Stud);
-    isvestiFaila(Stud, "islaike.txt");
-    isvestiFaila(Stud2, "neislaike.txt");
-    */
+    //sugeneruotiFaila(1000, 10, "generuotas1000.txt");
+    //nuskaitytiFaila(Stud,"generuotas1000.txt");
+    //Stud2 = padalinti3(Stud);
+    //isvestiFaila(Stud, "islaike.txt");
+    //isvestiFaila(Stud2, "neislaike.txt");
+   
 
 
     //Skirtingu veiksmu spartos tikrinimas

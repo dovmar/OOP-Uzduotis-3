@@ -19,12 +19,6 @@ void visasLaikas(container &A, container &A2, string failoPav) {
     nuskaitytiFaila(A, failoPav);
     cout << "Nuskaityti faila uztruko: " << praejoLaiko(start) << "s" << endl;
     pradeti(task_start);
-    for (Studentas& stud : A) {
-      naudojantMediana(stud);
-      naudojantVidurki(stud);
-    }
-    //cout << "Apskaiciuoti pazymius uztruko: " << praejoLaiko(task_start) << "s" << endl;
-    pradeti(task_start);
     A2 = padalinti(A);
     cout << "Padalinti i dvi grupes uztruko: " << praejoLaiko(task_start) << "s" << endl;
     pradeti(task_start);
@@ -40,10 +34,6 @@ void dalijimoLaikas(container& A, container& A2, string failoPav) {
     time_point start;
     container Temp, Temp2; //naudojami tik del to kad skirtingoms dalijimo i 2 dalis strategijoms nereiketu is naujo nuskaityti failo
     nuskaitytiFaila(A, failoPav);
-    for (Studentas& stud : A) {
-        naudojantMediana(stud);
-        naudojantVidurki(stud);
-    }
     Temp2 = Temp = A;
     pradeti(start);
     A2 = padalinti(A);

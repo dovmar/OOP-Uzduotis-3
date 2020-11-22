@@ -1,51 +1,12 @@
 #include "Header.h"
 #include "Generator.h"
-
-void teisingasIvedimas() {
-    // Skirtas patikrinti ar ivestas sveikas skaicius
-    cin.clear();
-    cin.ignore(80, '\n');
-    cout << "Iveskite tinkama sveikaji skaiciu: ";
-}
-
-
-void naudojantMediana(Studentas& A) {
-    // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
-    int m = A.nd.size();
-    if (m == 0) A.paz_med = 0;
-    else if (m == 1) A.paz_med = A.nd[0];
-    else {
-        sort(A.nd.begin(), A.nd.end());
-        if (m % 2 != 0) {
-            A.paz_med = A.nd[m / 2];
-        }
-        else {
-            A.paz_med = (A.nd[m / 2] + A.nd[m / 2 - 1]) / 2;
-        }
-    }
-    A.paz_med = A.paz_med * 0.4 + A.egz * 0.6;
-}
-
-
-void naudojantVidurki(Studentas& A) {
-    // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
-    int m = A.nd.size();
-    if (m == 0) A.paz_vid = A.egz;
-    else {
-        A.paz_vid = 0;
-        for (auto paz : A.nd) {
-            A.paz_vid = A.paz_vid + paz;
-        }
-        A.paz_vid = A.paz_vid * 0.4 / m + A.egz * 0.6;
-    }
-}
+#include "Studentas.h"
 
 
 void ivedimasRanka(container& A) {
     // Studentu duomenu ivedimas rankiniu budu
     int n;
     int m;
-    int input;
     Studentas stud;
     cout << "Kiek studentu norite ivesti? ";
     while (!(cin >> n)) {
@@ -56,23 +17,7 @@ void ivedimasRanka(container& A) {
         teisingasIvedimas();
     }
     for (int i = 0; i < n; i++) {
-        cout << "Iveskite studento varda ir pavarde: \n";
-        cin >> stud.vardas;
-        cout << "Iveskite studento pavarde: \n";
-        cin >> stud.pav;
-        if (m > 0) {
-            cout << "Iveskite studento namu darbu pazymius: \n";
-            for (int j = 0; j < m; j++) {
-                while (!(cin >> input && input > 0 && input <= 10)) {
-                    teisingasIvedimas();
-                }
-                stud.nd.push_back(input);
-            }
-        }
-        cout << "Iveskite studento egzamino pazymi: \n";
-        while (!(cin >> stud.egz)) {
-            teisingasIvedimas();
-        }
+        ivestiStudenta(stud, m);
         A.push_back(stud);
     }
 }
@@ -86,12 +31,12 @@ void isvedimasEkrane(container& A, string tipas) {
     cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     if (tipas == "(Vid.)") {
         for (container::iterator it = A.begin(); it != A.end(); it++) {
-            cout << setw(15) << left << it->vardas << setw(15) << left << it->pav << std::setprecision(3) << it->paz_vid << endl;
+            cout << setw(15) << left << it->vardas() << setw(15) << left << it->pavarde() << std::setprecision(3) << it->paz_vid() << endl;
         }
     }
     else {
         for (container::iterator it = A.begin(); it != A.end(); it++) {
-            cout << setw(15) << left << it->vardas << setw(15) << left << it->pav << std::setprecision(3) << it->paz_med << endl;
+            cout << setw(15) << left << it->vardas() << setw(15) << left << it->pavarde() << std::setprecision(3) << it->paz_med() << endl;
         }
     }
 }
@@ -132,25 +77,10 @@ void nuskaitytiFaila(container& A, string failoPav) {
         cout << "Rasta stulpeliu: " << m;
     }
     while (!skait.eof()) {
-        stud.nd.clear();
-        skait >> stud.vardas >> stud.pav;
-        for (int j = 0; j < m-3; j++) {
-            skait >> input;
-            stud.nd.push_back(input);
-        }
-        skait >> stud.egz;
+        nuskaitytiStudenta(skait, stud, m-3);
         A.push_back(stud);
     }
     skait.close();
-}
-
-
-bool palyginti(Studentas a, Studentas b) {
-    // Skirta palyginti du studentus pagal pavardes
-    if (a.pav < b.pav)
-        return 1;
-    else
-        return 0;
 }
 
 
@@ -165,22 +95,10 @@ void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     isvest << "Galutinis (Med.)" << endl;
     isvest << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     for (container::iterator it = A.begin(); it != A.end(); it++) {
-        isvest << setw(15) << left << it->pav << setw(15) << left << it->vardas
-            << setw(15) << left << std::setprecision(3) << it->paz_vid << std::setprecision(3) << it->paz_med << endl;
+        isvest << setw(15) << left << it->pavarde() << setw(15) << left << it->vardas()
+            << setw(15) << left << std::setprecision(3) << it->paz_vid() << std::setprecision(3) << it->paz_med() << endl;
     }
     isvest.close();
-}
-
-
-bool arIslaikeVid(Studentas& stud) {
-    // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
-    return stud.paz_vid >= 5;
-}
-
-
-bool arIslaikeMed(Studentas& stud) {
-    // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
-    return stud.paz_med >= 5;
 }
 
 container padalinti(container& A, bool(*tipas)(Studentas&)) {
@@ -266,10 +184,6 @@ void paleisti(container& A,container& A2) {
         else {
             cout << "Tokio pasirinkimo nera. Iveskite is naujo" << endl;
         }
-    }
-    for (Studentas& stud : A) {
-        naudojantMediana(stud);
-        naudojantVidurki(stud);
     }
     A2 = padalinti3(A);
     isvestiFaila(A, "islaike.txt");
