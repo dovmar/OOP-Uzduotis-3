@@ -1,4 +1,4 @@
-# OOP-Uzduotis-1
+# OOP-Uzduotis-2
 
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
