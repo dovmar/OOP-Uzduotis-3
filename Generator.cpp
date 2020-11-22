@@ -1,7 +1,7 @@
 #include "Generator.h"
 
 void sugeneruotiFaila(int n, int nd, string failoPav) {
-	// Sugeneruoja atsitiktini studentu duomenu faila
+	// Sugeneruoja atsitiktini pasirinkto dydzio studentu duomenu faila
 	std::random_device rd;
 	std::uniform_int_distribution<int> dist(0, 10);
 	int skaitmenys = std::to_string(n).length();

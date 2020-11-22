@@ -1,13 +1,14 @@
 #include "Header.h"
 
 void teisingasIvedimas() {
-    // Skirta naudoti kai tikrinima ar ivestas sveikas skaicius
+    // Skirtas patikrinti ar ivestas sveikas skaicius
     cin.clear();
     cin.ignore(80, '\n');
     cout << "Iveskite sveikaji skaiciu: ";
 }
 
-void naudojantMediana(duomuo& A) {
+
+void naudojantMediana(Studentas& A) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu mediana
     int m = A.nd.size();
     if (m == 0) A.paz_med = 0;
@@ -24,7 +25,8 @@ void naudojantMediana(duomuo& A) {
     A.paz_med = A.paz_med * 0.4 + A.egz * 0.6;
 }
 
-void naudojantVidurki(duomuo& A) {
+
+void naudojantVidurki(Studentas& A) {
     // Apskaiciuoja galutini pazymi naudojant namu darbu vidurki
     int m = A.nd.size();
     if (m == 0) A.paz_vid = A.egz;
@@ -37,12 +39,13 @@ void naudojantVidurki(duomuo& A) {
     }
 }
 
+
 void ivedimasRanka(container& A) {
-    // Ivedimas rankiniu budu
+    // Studentu duomenu ivedimas rankiniu budu
     int n;
     int m;
     int input;
-    duomuo stud;
+    Studentas stud;
     cout << "Kiek studentu norite ivesti? ";
     while (!(cin >> n)) {
         teisingasIvedimas();
@@ -56,8 +59,6 @@ void ivedimasRanka(container& A) {
         cin >> stud.vardas;
         cout << "Iveskite studento pavarde: \n";
         cin >> stud.pav;
-        /* Galima arba ivesti pazymius rankiniu budu naudojant ivedamiND()
-        arba juos sugeneruoti atsitiktinai naudojant atsitiktiniaiND() */
         if (m > 0) {
             cout << "Iveskite studento namu darbu pazymius: \n";
             for (int j = 0; j < m; j++) {
@@ -74,6 +75,7 @@ void ivedimasRanka(container& A) {
         A.push_back(stud);
     }
 }
+
 
 void isvedimasEkrane(container& A, string tipas) {
     // Isveda galutinius pazymius i ekrana
@@ -97,7 +99,7 @@ void isvedimasEkrane(container& A, string tipas) {
 int gautiStulpeliuKieki(string s) {
     //Analizuoja pirma nuskaityto failo eilute norint gauti namu darbu kieki
     bool praeitas = 0; // Ar praeitas simbolis nebuvo tarpas
-    int kiekis = 0;
+    int kiekis = 0; // Stulpeliu kiekio skaitiklis
     for (int i = 0; i < s.size(); i++) {
         if (praeitas == 1 & (s[i] == (char)' ' | s[i] == '\t') ) kiekis = kiekis + 1;
         if (s[i] == (char)' ' | s[i] == '\t') praeitas = 0;
@@ -105,6 +107,7 @@ int gautiStulpeliuKieki(string s) {
     }
     return kiekis+1;
 }
+
 
 void nuskaitytiFaila(container& A, string failoPav) {
     // Nuskaito duomenis is failo
@@ -117,14 +120,14 @@ void nuskaitytiFaila(container& A, string failoPav) {
     }
     int input;
     int m;
-    duomuo stud;
+    Studentas stud;
     getline(skait, pirmaEil);
     try {
         m = gautiStulpeliuKieki(pirmaEil);
         if (m < 3) throw (m);
     }
     catch (int m) {
-        cout << "Nepavyko nustatyti stulpelio kiekio" << endl;
+        cout << "Nepavyko nustatyti tinkamo stulpeliu kiekio" << endl;
         cout << "Rasta stulpeliu: " << m;
     }
     while (!skait.eof()) {
@@ -140,13 +143,15 @@ void nuskaitytiFaila(container& A, string failoPav) {
     skait.close();
 }
 
-bool palyginti(duomuo a, duomuo b) {
+
+bool palyginti(Studentas a, Studentas b) {
     // Skirta palyginti du studentus pagal pavardes
     if (a.pav < b.pav)
         return 1;
     else
         return 0;
 }
+
 
 void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     // Isveda studentu rezultatus i faila
@@ -165,29 +170,57 @@ void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     isvest.close();
 }
 
-bool arIslaike(duomuo& stud,string tipas) {
+
+bool arIslaikeVid(Studentas& stud) {
     // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
-    if (tipas == "(Vid.)") return stud.paz_vid < 5;
-    else return stud.paz_med < 5;
+    return stud.paz_vid >= 5;
 }
 
-container padalinti(container& A, string tipas) {
-    // Padalija studentus i dvi grupes pagal pazymius
+
+bool arIslaikeMed(Studentas& stud) {
+    // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
+    return stud.paz_med >= 5;
+}
+
+container padalinti(container& A, bool(*tipas)(Studentas&)) {
+    // Padalijimas i 2 konteinerius perkopijuojant i abu
     container islaike, neislaike;
-    for (duomuo& stud : A) {
-        if (arIslaike(stud, tipas)) neislaike.push_back(stud);
+    for (Studentas& stud : A) {
+        if (!tipas(stud)) neislaike.push_back(stud);
         else islaike.push_back(stud);
     }
     A = islaike;
     return neislaike;
 }
 
-void mySort(vector<duomuo>& A) {
+
+container padalinti2(container& A, bool(*tipas)(Studentas&)) {
+    // Padalijimas i 2 konteinerius i 1 perkopijuojant, o is 2 istrinant
+    container neislaike;
+    for (Studentas& stud : A) {
+        if (!tipas(stud)) neislaike.push_back(stud);
+    }
+    A.erase(remove_if(A.begin(), A.end(), arIslaikeVid));
+    return neislaike;
+}
+
+
+container padalinti3(container& A, bool(*tipas)(Studentas&)) {
+    // Padalijimas i du konteinerius naudojant partition
+    container::iterator it = std::partition(A.begin(), A.end(), tipas);
+    container neislaike(it, A.end());
+    A.erase(it, A.end());
+    return neislaike;
+}
+
+
+void mySort(vector<Studentas>& A) {
     // Rusiuoja vektorius
     sort(A.begin(), A.end(), palyginti);
 }
 
-void mySort(list<duomuo>& A) {
+
+void mySort(list<Studentas>& A) {
     // Rusiuoja sarasus
     A.sort(palyginti);
 }

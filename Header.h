@@ -23,7 +23,7 @@ using std::sort;
 using std::ifstream;
 using std::ofstream;
 
-struct duomuo {
+struct Studentas {
     string vardas;
     string pav;
     vector <int> nd;
@@ -32,19 +32,22 @@ struct duomuo {
     float paz_med;
 };
 
-using container = list<duomuo>;
+using container = vector<Studentas>;
 
 void teisingasIvedimas();
 void ivedamiND(container&,int,int);
-void naudojantMediana(duomuo&);
-void naudojantVidurki(duomuo&);
+void naudojantMediana(Studentas&);
+void naudojantVidurki(Studentas&);
 void ivedimasRanka(container&);
 void isvedimasEkrane(container&,string = "(Vid.)" );
 int gautiStulpeliuKieki(string);
 void nuskaitytiFaila(container&, string);
-bool palyginti(duomuo, duomuo);
+bool palyginti(Studentas, Studentas);
 void isvestiFaila(container&,string);
-bool arIslaike(duomuo&, string);
-container padalinti(container&, string = "(Vid.)");
-void mySort(vector<duomuo>&);
-void mySort(list<duomuo>&);
+bool arIslaikeVid(Studentas&);
+bool arIslaikeMed(Studentas&);
+container padalinti(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
+container padalinti2(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
+container padalinti3(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
+void mySort(vector<Studentas>&);
+void mySort(list<Studentas>&);
