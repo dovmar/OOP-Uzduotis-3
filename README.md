@@ -69,19 +69,19 @@ Storage:  	WDC PC SN520 SDAPMUW-256G-1101 SSD
 
 Skirtingų programos atliekamų veiksmų trukmė:
 
-![](programos_sparta.png)
+![](spartos_analizė/programos_sparta.png)
 
 
 Programos sparta naudojant **std::vector**:
 
-![](vector_sparta.png)
+![](spartos_analizė/vector_sparta.png)
 
 
 Programos sparta naudojant **std::list**:
 
-![](list_sparta.png)
+![](spartos_analizė/list_sparta.png)
 
 
 Studentų padalijimo į dvi dalis trukmė, naudojant skirtingas dalijimo strategijas:
 
-![](dalijimo_sparta.png)
+![](spartos_analizė/dalijimo_sparta.png)
