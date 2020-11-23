@@ -10,6 +10,7 @@ using std::cin;
 using std::cout;
 
 #pragma once
+
 class Studentas
 {
 private:
@@ -36,7 +37,10 @@ public:
 	friend void nuskaitytiStudenta(std::ifstream& ifs, Studentas& stud, int m);
 	Studentas(const Studentas& stud);
 	Studentas& operator=(const Studentas& stud);
-
+	bool operator<(const Studentas& stud);
+	bool operator>(const Studentas& stud);
+	bool operator==(const Studentas& stud);
+	bool operator !=(const Studentas& stud);
 };
 
 

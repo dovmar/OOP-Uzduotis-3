@@ -24,8 +24,8 @@ void visasLaikas(container &A, container &A2, string failoPav) {
     pradeti(task_start);
     isvestiFaila(A, "islaike.txt");
     isvestiFaila(A2, "neislaike.txt");
-    //cout << "Isvesti i failus uztruko: " << praejoLaiko(task_start) << "s" << endl;
-    //cout << "Viso uztruko: " << praejoLaiko(start) << "s" << endl << endl;
+    cout << "Isvesti i failus uztruko: " << praejoLaiko(task_start) << "s" << endl;
+    cout << "Viso uztruko: " << praejoLaiko(start) << "s" << endl << endl;
 }
 
 
