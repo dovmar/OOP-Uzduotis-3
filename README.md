@@ -2,9 +2,16 @@
 
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
+
+## 1.2 versija
+
+
+## 1.1 versija
+
+
 ## Įdiegimo instrukcija
 
-- Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-1/releases/).
+- Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-2/releases/).
 - Sukompiliuoti programą naudojant CMakeLists.txt failą.
 - Paleisti programą.
 
@@ -39,49 +46,9 @@ sugeneruotiFaila(1000, 10, "generuotas1000.txt");
 
 ## Versijų istorija
 
+## [1.0 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.0)
 
-## [0.5 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.5)
-
-- Programa pritaikyta veikti ir naudojant std::list konteinerį.
-
-
-## [0.4 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.4)
-
- 
-- Programa gali padalinti studentus į dvi dalis (priklausomai nuo to ar jų galutinis pažymys didesnis ar mažesnis už pasirinktą) ir išvesti studentus į du atskirus failus. Pvz. nuskaitome failą studentai.txt ir padaliję išvedame į atskirus failus:
-
-
-- Su programa galima sugeneruoti duomenų failą su atsitiktiniais studentų duomenimis.
-
-
-- Naudojant funkciją **visasLaikas()** galima sužinoti kiek laiko programa užtrunka vykdydama skirtingus žingsnius.
-
-
-## [0.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.2)
-
-
-- Programa gali nuskaityti/išvesti studentų duomenys iš failų.  
-
-- Programoje nereikia rankiniu būdu įvesti stulpelių kiekio ir patys stulpelių vardai nėra svarbūs.
-
-- Norint nuskaityti studentų duomenis iš failo, naudoti funciją **nuskaitytiFaila()**. Pvz. jeigu mūsų tinkamo formato failo vardas "studentai.txt":
-
-- Studentų rezultatai įrašomi į failą su **isvestiFaila()**.
-
-- Duomenys nebūtinai turi būti ir įvedami iš failo ir rezultatai išvedami į failą. Pvz. duomenis galima įvesti ranka ir tada rezultatus įrašyti į failą arba atvikščiai.
-
-
-## [0.1 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v0.1)
-
-- Programa skirta rankiniu būdu įvesti studentų duomenims ir apskaičiavus jų galutinį pažymį išvesti rezultatus į ekraną.
-
-* Pateiktos dvi programos versijos:
- * main.cpp naudoja C masyvus
- * main_vector.cpp naudoja std::vector konteinerį
-
-- Programa gali apskaičiuoti galutinį pažymį naudojant medianą arba vidurkį.
-
-
+- Naujausia programos versija naudojanti struktūras.
 
 ## Programos spartos analizė
 
@@ -94,21 +61,11 @@ Storage:  	WDC PC SN520 SDAPMUW-256G-1101 SSD
 
 ```
 
-Skirtingų programos atliekamų veiksmų trukmė:
+Skirtingų programos atliekamų veiksmų trukmė naudojant Studentas struktūrą:
 
 ![](spartos_analizė/programos_sparta.png)
 
 
-Programos sparta naudojant **std::vector**:
+Programos sparta naudojant Studentas klasę:
 
-![](spartos_analizė/vector_sparta.png)
-
-
-Programos sparta naudojant **std::list**:
-
-![](spartos_analizė/list_sparta.png)
-
-
-Studentų padalijimo į dvi dalis trukmė, naudojant skirtingas dalijimo strategijas:
-
-![](spartos_analizė/dalijimo_sparta.png)
+![](spartos_analizė/class_sparta.png)
