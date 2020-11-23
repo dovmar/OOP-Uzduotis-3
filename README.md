@@ -5,9 +5,12 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 
 ## 1.2 versija
 
+- Realizuoti operatoriai Studentas klasei
 
 ## 1.1 versija
 
+- Vietoje studentas struktūros naudojama Studentas klasė
+- Atlikta programos veikimo greičio analizė naudojant skirtingus optimizavimo flag'us
 
 ## Įdiegimo instrukcija
 
@@ -55,17 +58,31 @@ sugeneruotiFaila(1000, 10, "generuotas1000.txt");
 Sparos matavimui naudotos sistemos duomenys:
 
 ```
-Processor:	Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)
+Processor: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)
 Memory:    6.00GB
-Storage:  	WDC PC SN520 SDAPMUW-256G-1101 SSD
+Storage:   WDC PC SN520 SDAPMUW-256G-1101 SSD
 
 ```
 
-Skirtingų programos atliekamų veiksmų trukmė naudojant Studentas struktūrą:
+Programos sparta naudojant Studentas struktūrą:
 
 ![](spartos_analizė/programos_sparta.png)
+
 
 
 Programos sparta naudojant Studentas klasę:
 
 ![](spartos_analizė/class_sparta.png)
+
+
+
+Programos sparta naudojant O1 flag'ą:
+
+![](spartos_analizė/O1.png)
+
+
+
+Programos sparta naudojant O2 flag'ą:
+
+![](spartos_analizė/O2.png)
+
