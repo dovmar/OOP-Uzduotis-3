@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include "Zmogus.h"
 
 using std::vector;
 using std::string;
@@ -11,8 +12,7 @@ using std::cout;
 
 #pragma once
 
-class Studentas
-{
+class Studentas : public Zmogus {
 private:
 	string vardas_;
 	string pavarde_;
@@ -21,14 +21,11 @@ private:
 	float paz_vid_;
 	float paz_med_;
 public:
-    Studentas() : vardas_{ "" }, pavarde_{ "" }, egzaminas_{ 1 }, paz_vid_{ 1 }, paz_med_{1} {}
-	string vardas() const { return vardas_; }
-	string pavarde() const { return pavarde_; }
+	Studentas() :Zmogus{}, egzaminas_{ 1 }, paz_vid_{ 1 }, paz_med_{ 1 } {}
+	Studentas(string vardas, string pavarde) : Zmogus{vardas,pavarde}, egzaminas_{ 1 }, paz_vid_{ 1 }, paz_med_{ 1 } {}
     int egzaminas() const { return egzaminas_; }
 	float paz_vid() const { return paz_vid_; }
 	float paz_med() const { return paz_med_; }
-	void setVardas(string vardas) { vardas_ = vardas; }
-	void setPavarde(string pavarde) { pavarde_ = pavarde; }
     void setEgzaminas(int egz) { egzaminas_ = egz; }
 	void setMediana();
 	void setVidurkis();
@@ -37,10 +34,6 @@ public:
 	friend void nuskaitytiStudenta(std::ifstream& ifs, Studentas& stud, int m);
 	Studentas(const Studentas& stud);
 	Studentas& operator=(const Studentas& stud);
-	bool operator<(const Studentas& stud);
-	bool operator>(const Studentas& stud);
-	bool operator==(const Studentas& stud);
-	bool operator !=(const Studentas& stud);
 };
 
 

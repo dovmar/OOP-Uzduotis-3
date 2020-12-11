@@ -118,20 +118,3 @@ bool arIslaikeMed(Studentas& stud) {
     // Patikrina ar studento galutinis pazymis didesnis uz tam tikra riba
     return stud.paz_med() >= 5;
 }
-
-
-bool Studentas::operator<(const Studentas& stud) {
-    return pavarde_ <= stud.pavarde_ || (pavarde_ == stud.pavarde_ && vardas_ < stud.vardas_);
-}
-
-bool Studentas::operator>(const Studentas& stud) {
-    return !operator<(stud);
-}
-
-bool Studentas::operator==(const Studentas& stud) {
-    return vardas_ == stud.vardas_ && pavarde_ == stud.pavarde_;
-}
-
-bool Studentas::operator!=(const Studentas& stud) {
-    return !operator==(stud);
-}
