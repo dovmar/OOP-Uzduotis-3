@@ -29,7 +29,8 @@ void nuskaitytiStudenta(std::ifstream& ifs,Studentas& stud,int m) {
 void ivestiStudenta(Studentas& stud,int m) {
     // Ivesti studenta rankiniu budu
     int input;
-    cout << "Iveskite studento varda ir pavarde: \n";
+    stud.nd_.clear();
+    cout << "Iveskite studento varda: \n";
     cin >> stud.vardas_;
     cout << "Iveskite studento pavarde: \n";
     cin >> stud.pavarde_;
@@ -84,7 +85,7 @@ void Studentas::setVidurkis() {
 }
 
 
-Studentas::Studentas(const Studentas& stud) : vardas_{ stud.vardas_ }, pavarde_{ stud.pavarde_ }, nd_{ stud.nd_ }, egzaminas_{ stud.egzaminas_ } {}
+Studentas::Studentas(const Studentas& stud) : Zmogus(stud), nd_{ stud.nd_ }, egzaminas_{ stud.egzaminas_ }, paz_vid_{ stud.paz_vid_ }, paz_med_{stud.paz_med_} {}
 
 
 Studentas& Studentas::operator=(const Studentas& stud) {

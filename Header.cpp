@@ -96,7 +96,7 @@ void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     isvest << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     for (container::iterator it = A.begin(); it != A.end(); it++) {
         isvest << setw(15) << left << it->pavarde() << setw(15) << left << it->vardas()
-            << setw(15) << left << std::setprecision(3) << it->paz_vid() << std::setprecision(3) << it->paz_med() << endl;
+            << setw(15) << left << std::setprecision(3) << it->egzaminas() << std::setprecision(3) << it->paz_med() << endl;
     }
     isvest.close();
 }
@@ -108,27 +108,8 @@ container padalinti(container& A, bool(*tipas)(Studentas&)) {
         if (!tipas(stud)) neislaike.push_back(stud);
         else islaike.push_back(stud);
     }
+    A.clear();
     A = islaike;
-    return neislaike;
-}
-
-
-container padalinti2(container& A, bool(*tipas)(Studentas&)) {
-    // Padalijimas i 2 konteinerius i 1 perkopijuojant, o is 2 istrinant
-    container neislaike;
-    for (Studentas& stud : A) {
-        if (!tipas(stud)) neislaike.push_back(stud);
-    }
-    A.erase(remove_if(A.begin(), A.end(), arIslaikeVid));
-    return neislaike;
-}
-
-
-container padalinti3(container& A, bool(*tipas)(Studentas&)) {
-    // Padalijimas i du konteinerius naudojant partition
-    container::iterator it = std::partition(A.begin(), A.end(), tipas);
-    container neislaike(it, A.end());
-    A.erase(it, A.end());
     return neislaike;
 }
 
@@ -185,7 +166,7 @@ void paleisti(container& A,container& A2) {
             cout << "Tokio pasirinkimo nera. Iveskite is naujo" << endl;
         }
     }
-    A2 = padalinti3(A);
+    A2 = padalinti(A);
     isvestiFaila(A, "islaike.txt");
     isvestiFaila(A2, "neislaike.txt");
     cout << "Rezultatai isvesti i failus 'islaike.txt' ir 'neislaike.txt'!";
