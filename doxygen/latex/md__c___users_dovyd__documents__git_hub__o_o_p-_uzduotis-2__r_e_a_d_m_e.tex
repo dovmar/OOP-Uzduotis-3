@@ -1,0 +1,99 @@
+Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md1}{}\doxysection{1.\+5 versija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Sukurta abstrakti Žmogus klasė, kurios išvestine klase padaryta \mbox{\hyperlink{class_studentas}{Studentas}} klasė
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md2}{}\doxysection{1.\+2 versija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Realizuoti operatoriai \mbox{\hyperlink{class_studentas}{Studentas}} klasei
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md3}{}\doxysection{1.\+1 versija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Vietoje studentas struktūros naudojama \mbox{\hyperlink{class_studentas}{Studentas}} klasė
+\item Atlikta programos veikimo greičio analizė naudojant skirtingus optimizavimo flag\textquotesingle{}us
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md4}{}\doxysection{Įdiegimo instrukcija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Atsiųsti \href{https://github.com/dovmar/OOP-Uzduotis-2/releases/}{\texttt{ naujausią versiją}}.
+\item Sukompiliuoti programą naudojant C\+Make\+Lists.\+txt failą.
+\item Paleisti programą.
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md5}{}\doxysection{Naudojimosi instrukcija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Jeigu nenorite stipriai keisti programos parametrų, tiesiog paleiskite programą ir sekite nurodymus ekrane.
+\item Jeigu pasirinkote programai pateikti savo failą, jis turi būti tokio formato (namų darbų kiekį programa aptiks pati)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Pavardė     Vardas      ND1  ND2   ND3  ND4  ND5  Egzaminas}
+\DoxyCodeLine{Vardas1     Pavardė1    8    9     10   6    10   9}
+\DoxyCodeLine{Vardas2     Pavardė2    7    10    8    5    4    6}
+\DoxyCodeLine{Vardas2     Pavardė2    7    10    8    5    4    6}
+\end{DoxyCode}
+
+\item Jeigu norite detaliai kontroliuoti programos veikimą, faile main.\+cpp vietoje 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{paleisti(Stud, Stud2);}
+\end{DoxyCode}
+
+
+galite rankiniu būdu pasirinkti su kokiais parametrais programa turėtų veikti, pavyzdžiui\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{sugeneruotiFaila(1000, 10, "{}generuotas1000.txt"{});}
+\DoxyCodeLine{    nuskaitytiFaila(Stud,"{}generuotas1000.txt"{});}
+\DoxyCodeLine{    for (Studentas\& stud : Stud) \{}
+\DoxyCodeLine{        naudojantMediana(stud);}
+\DoxyCodeLine{        naudojantVidurki(stud);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    Stud2 = padalinti3(Stud);}
+\DoxyCodeLine{    isvestiFaila(Stud, "{}islaike.txt"{});}
+\DoxyCodeLine{    isvestiFaila(Stud2, "{}neislaike.txt"{});}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md6}{}\doxysection{Versijų istorija}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md6}
+\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md7}{}\doxysection{$<$a href=\char`\"{}https\+://github.\+com/dovmar/\+O\+O\+P-\/\+Uzduotis-\/1/releases/tag/v1.\+2\char`\"{}$>$1.\+2 versija$<$/a$>$}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Programos versija naudojanti Studento klasę, vietoje struktūrų.
+
+{\bfseries{DĖ\+M\+E\+S\+I\+O!}} Į šį releas\textquotesingle{}ą pateko bug\textquotesingle{}as -\/ Studento klasės copy konstructorius neperkopijuoja studento galutinių pažymių, todėl visų studentų pažymiai tampa lygus 0.
+
+Norint to išvengti reikia pakeisti failo studentas.\+cpp 87 eilutę į\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{Studentas::Studentas(const Studentas\& stud) : vardas\_\{ stud.vardas\_ \}, pavarde\_\{ stud.pavarde\_ \},}
+\DoxyCodeLine{nd\_\{ stud.nd\_ \}, egzaminas\_\{ stud.egzaminas\_ \} \{\}}
+\end{DoxyCode}
+\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md8}{}\doxysection{$<$a href=\char`\"{}https\+://github.\+com/dovmar/\+O\+O\+P-\/\+Uzduotis-\/1/releases/tag/v1.\+0\char`\"{}$>$1.\+0 versija$<$/a$>$}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Naujausia programos versija naudojanti struktūras.
+\end{DoxyItemize}\hypertarget{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md9}{}\doxysection{Programos spartos analizė}\label{md__c___users_dovyd__documents__git_hub__o_o_p-_uzduotis-2__r_e_a_d_m_e_autotoc_md9}
+Sparos matavimui naudotos sistemos duomenys\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Processor: Intel(R) Core(TM) i5-\/8250U CPU @ 1.60GHz, 1801 Mhz, 4 Core(s)}
+\DoxyCodeLine{Memory:    6.00GB}
+\DoxyCodeLine{Storage:   WDC PC SN520 SDAPMUW-\/256G-\/1101 SSD}
+\end{DoxyCode}
+
+
+Programos sparta naudojant \mbox{\hyperlink{class_studentas}{Studentas}} struktūrą\+:
+
+
+
+Programos sparta naudojant \mbox{\hyperlink{class_studentas}{Studentas}} klasę\+:
+
+
+
+Programos sparta naudojant O1 flag\textquotesingle{}ą\+:
+
+
+
+Programos sparta naudojant O2 flag\textquotesingle{}ą\+:
+
+ 

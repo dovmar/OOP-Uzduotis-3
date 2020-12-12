@@ -5,7 +5,7 @@
 int main()
 {
     int n;
-   container Stud; //konteineris i kuri nuskaitomi studentu duomenys
+    container Stud; //konteineris i kuri nuskaitomi studentu duomenys
     container Stud2; //konteineris laikyti neislaikiusiems studentams
     
 
