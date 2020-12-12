@@ -9,47 +9,45 @@ void teisingasIvedimas() {
 }
 
 
-void nuskaitytiStudenta(std::ifstream& ifs,Studentas& stud,int m) {
-    // Nuskaito studenta is failo
+Studentas::Studentas(std::istringstream& iss, int m) {
+    // Nuskaito studenta is eilutes srauto
     int input;
-    stud.nd_.clear();
-    ifs >> stud.vardas_ >> stud.pavarde_;
+    iss >> vardas_ >> pavarde_;
     if (m > 0) {
         for (int j = 0; j < m; j++) {
-            ifs >> input;
-            stud.addNd(input);
+            iss >> input;
+            this->addNd(input);
         }
     }
-    ifs >> stud.egzaminas_;
-    stud.setVidurkis();
-    stud.setMediana();
+    iss >> egzaminas_;
+    this->setVidurkis();
+    this->setMediana();
 }
 
 
-void ivestiStudenta(Studentas& stud,int m) {
+Studentas::Studentas(int m) {
     // Ivesti studenta rankiniu budu
     int input;
-    stud.nd_.clear();
     cout << "Iveskite studento varda: \n";
-    cin >> stud.vardas_;
+    cin >> vardas_;
     cout << "Iveskite studento pavarde: \n";
-    cin >> stud.pavarde_;
+    cin >> pavarde_;
     if (m > 0) {
         cout << "Iveskite studento namu darbu pazymius: \n";
         for (int j = 0; j < m; j++) {
             while (!(cin >> input && input > 0 && input <= 10)) {
                 teisingasIvedimas();
             }
-            stud.addNd(input);
+            this->addNd(input);
         }
     }
     cout << "Iveskite studento egzamino pazymi: \n";
     while (!(cin >> input)) {
         teisingasIvedimas();
     }
-    stud.setEgzaminas(input);
-    stud.setVidurkis();
-    stud.setMediana();
+    egzaminas_ = input;
+    this->setVidurkis();
+    this->setMediana();
 }
 
 
@@ -82,6 +80,14 @@ void Studentas::setVidurkis() {
         }
         this->paz_vid_ = this->paz_vid_ * 0.4 / m + this->egzaminas_ * 0.6;
     }
+}
+
+
+ostream& operator<<(std::ostream& isves, const Studentas& stud) {
+    // Studento isvedimas
+    isves << setw(15) << left << stud.pavarde() << setw(15) << left << stud.vardas()
+        << setw(15) << left << std::setprecision(3) << stud.paz_vid() << std::setprecision(3) << stud.paz_med();
+    return isves;
 }
 
 

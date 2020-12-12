@@ -18,7 +18,7 @@ public:
 	void setPavarde(string pavarde) { pavarde_ = pavarde; }
 
 	virtual string pareigos() = 0; // padaro klase abstrakcia
-
+	
 	Zmogus& operator=(const Zmogus& zm);
 	bool operator<(const Zmogus& stud);
 	bool operator>(const Zmogus& stud);

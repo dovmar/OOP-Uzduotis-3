@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Studentas.h"
+#include "Generator.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -10,6 +11,7 @@
 #include <random>
 #include <fstream>
 #include <exception>
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -23,19 +25,16 @@ using std::setw;
 using std::sort;
 using std::ifstream;
 using std::ofstream;
-
+using std::istringstream;
 
 using container = vector<Studentas>;
 
 void teisingasIvedimas();
 void ivedimasRanka(container&);
-void isvedimasEkrane(container&,string = "(Vid.)" );
-int gautiStulpeliuKieki(string);
+void isvedimasEkrane(container&);
 void nuskaitytiFaila(container&, string);
 void isvestiFaila(container&,string);
 container padalinti(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
-container padalinti2(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
-container padalinti3(container&, bool(*tipas)(Studentas&) = arIslaikeVid);
 void mySort(vector<Studentas>&);
 void mySort(list<Studentas>&);
 void paleisti(container&, container&);

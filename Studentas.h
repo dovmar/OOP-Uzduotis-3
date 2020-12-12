@@ -1,15 +1,20 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
-#include <fstream>
 #include <algorithm>
+#include <sstream>
 #include "Zmogus.h"
 
 using std::vector;
 using std::string;
 using std::ostream;
+using std::ofstream;
+using std::istringstream;
 using std::cin;
 using std::cout;
+using std::setw;
+using std::left;
 
 #pragma once
 
@@ -21,7 +26,9 @@ protected:
 	float paz_med_;
 public:
 	Studentas() :Zmogus{}, egzaminas_{ 0 }, paz_vid_{ 0 }, paz_med_{ 0 } {}
-	Studentas(string vardas, string pavarde) : Zmogus{vardas,pavarde}, egzaminas_{ 1 }, paz_vid_{ 1 }, paz_med_{ 1 } {}
+	Studentas(string vardas, string pavarde) : Zmogus{vardas,pavarde}, egzaminas_{ 0 }, paz_vid_{ 0 }, paz_med_{ 0 } {}
+	Studentas(istringstream& iss, int m);
+	Studentas(int m);
 	Studentas(const Studentas& stud);
 
     int egzaminas() const { return egzaminas_; }
@@ -36,8 +43,8 @@ public:
 
 	Studentas& operator=(const Studentas& stud);
 
+	friend ostream& operator<<(ostream& isves, const Studentas& stud);
 	friend void ivestiStudenta(Studentas& stud, int m);
-	friend void nuskaitytiStudenta(std::ifstream& ifs, Studentas& stud, int m);
 };
 
 

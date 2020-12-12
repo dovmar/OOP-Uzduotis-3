@@ -1,13 +1,10 @@
 #include "Header.h"
-#include "Generator.h"
-#include "Studentas.h"
 
 
 void ivedimasRanka(container& A) {
     // Studentu duomenu ivedimas rankiniu budu
     int n;
     int m;
-    Studentas stud;
     cout << "Kiek studentu norite ivesti? ";
     while (!(cin >> n)) {
         teisingasIvedimas();
@@ -17,41 +14,21 @@ void ivedimasRanka(container& A) {
         teisingasIvedimas();
     }
     for (int i = 0; i < n; i++) {
-        ivestiStudenta(stud, m);
-        A.push_back(stud);
+        A.push_back(Studentas(m));
     }
 }
 
 
-void isvedimasEkrane(container& A, string tipas) {
+void isvedimasEkrane(container& A) {
     // Isveda galutinius pazymius i ekrana
     cout << setw(15) << left << "Pavarde";
     cout << setw(15) << left << "Vardas";
-    cout << "Galutinis " << tipas << endl;
+    cout << setw(15) << left << "Galutinis (Vid.) ";
+    cout << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
-    if (tipas == "(Vid.)") {
-        for (container::iterator it = A.begin(); it != A.end(); it++) {
-            cout << setw(15) << left << it->vardas() << setw(15) << left << it->pavarde() << std::setprecision(3) << it->paz_vid() << endl;
-        }
+    for (auto& stud : A) {
+        cout << stud << endl;
     }
-    else {
-        for (container::iterator it = A.begin(); it != A.end(); it++) {
-            cout << setw(15) << left << it->vardas() << setw(15) << left << it->pavarde() << std::setprecision(3) << it->paz_med() << endl;
-        }
-    }
-}
-
-
-int gautiStulpeliuKieki(string s) {
-    //Analizuoja pirma nuskaityto failo eilute norint gauti namu darbu kieki
-    bool praeitas = 0; // Ar praeitas simbolis nebuvo tarpas
-    int kiekis = 0; // Stulpeliu kiekio skaitiklis
-    for (int i = 0; i < s.size(); i++) {
-        if (praeitas == 1 & (s[i] == (char)' ' | s[i] == '\t') ) kiekis = kiekis + 1;
-        if (s[i] == (char)' ' | s[i] == '\t') praeitas = 0;
-        else praeitas = 1;
-    }
-    return kiekis+1;
 }
 
 
@@ -59,17 +36,19 @@ void nuskaitytiFaila(container& A, string failoPav) {
     // Nuskaito duomenis is failo
     ifstream skait;
     string pirmaEil;
+    string zodis;
+    int m=0;
     skait.open(failoPav);
     if (skait.fail()) {
         std::cerr << "Klaida atidarant faila";
         exit(0);
     }
-    int input;
-    int m;
-    Studentas stud;
     getline(skait, pirmaEil);
+    istringstream iss(pirmaEil);
     try {
-        m = gautiStulpeliuKieki(pirmaEil);
+        while (iss >> zodis) {
+            ++m;
+        }
         if (m < 3) throw (m);
     }
     catch (int m) {
@@ -77,8 +56,9 @@ void nuskaitytiFaila(container& A, string failoPav) {
         cout << "Rasta stulpeliu: " << m;
     }
     while (!skait.eof()) {
-        nuskaitytiStudenta(skait, stud, m-3);
-        A.push_back(stud);
+        getline(skait, pirmaEil);
+        istringstream iss(pirmaEil);
+        A.push_back(Studentas(iss, m - 3));
     }
     skait.close();
 }
@@ -94,9 +74,8 @@ void isvestiFaila(container& A,string failoPav = "rezultatai.txt") {
     isvest << setw(15) << left << "Galutinis (Vid.) ";
     isvest << "Galutinis (Med.)" << endl;
     isvest << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
-    for (container::iterator it = A.begin(); it != A.end(); it++) {
-        isvest << setw(15) << left << it->pavarde() << setw(15) << left << it->vardas()
-            << setw(15) << left << std::setprecision(3) << it->egzaminas() << std::setprecision(3) << it->paz_med() << endl;
+    for (auto& stud : A) {
+       isvest << stud << endl;
     }
     isvest.close();
 }
