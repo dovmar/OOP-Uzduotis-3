@@ -55,7 +55,7 @@ sugeneruotiFaila(1000, 10, "generuotas1000.txt");
 
 ## [1.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.2)
 
-- Programos versija naudojanti Studento klasę, vietoje struktūrų
+- Programos versija naudojanti Studento klasę, vietoje struktūrų.
 
    **DĖMESIO!** Į šį releas'ą pateko bug'as - Studento klasės copy konstructorius neperkopijuoja studento galutinių pažymių, todėl visų studentų pažymiai tampa lygus 0.
 
