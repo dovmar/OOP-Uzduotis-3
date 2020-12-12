@@ -2,6 +2,10 @@
 
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
+## 2.0 versija
+
+- Pridėtas doxygen aprašas klasėms
+- Sukurti keli unit testai naudojant Google Test framework'ą
 
 ## 1.5 versija
 
@@ -52,6 +56,12 @@ sugeneruotiFaila(1000, 10, "generuotas1000.txt");
 ```
 
 ## Versijų istorija
+
+## [1.5 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.5)
+
+- Sukurta abstrakti Žmogus klasė
+- Supaprastintas kelių funckijų kodas naudojantis klasių galimybėmis
+- Ištaisytas anksčiau minėtas bug'as
 
 ## [1.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.2)
 
