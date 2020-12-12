@@ -3,6 +3,10 @@
 Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų pažymiai, egzamino pažymys), apskaičiuoti ir išvesti kiekvieno studento galutinį pažymį.
 
 
+## 1.5 versija
+
+- Sukurta abstrakti Žmogus klasė, kurios išvestine klase padaryta Studentas klasė
+
 ## 1.2 versija
 
 - Realizuoti operatoriai Studentas klasei
@@ -48,6 +52,20 @@ sugeneruotiFaila(1000, 10, "generuotas1000.txt");
 ```
 
 ## Versijų istorija
+
+## [1.2 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.2)
+
+- Programos versija naudojanti Studento klasę, vietoje struktūrų
+
+   **DĖMESIO!** Į šį releas'ą pateko bug'as - Studento klasės copy konstructorius neperkopijuoja studento galutinių pažymių, todėl visų studentų pažymiai tampa lygus 0.
+
+    Norint to išvengti reikia pakeisti failo studentas.cpp 87 eilutę į:
+
+```c++
+Studentas::Studentas(const Studentas& stud) : vardas_{ stud.vardas_ }, pavarde_{ stud.pavarde_ },
+nd_{ stud.nd_ }, egzaminas_{ stud.egzaminas_ } {}
+
+```
 
 ## [1.0 versija](https://github.com/dovmar/OOP-Uzduotis-1/releases/tag/v1.0)
 
