@@ -7,19 +7,6 @@ Programa skirta nuskaityti studentų duomenims (vardas, pavardė, namų darbų p
 - Pridėtas doxygen aprašas klasėms
 - Sukurti keli unit testai naudojant Google Test framework'ą
 
-## 1.5 versija
-
-- Sukurta abstrakti Žmogus klasė, kurios išvestine klase padaryta Studentas klasė
-
-## 1.2 versija
-
-- Realizuoti operatoriai Studentas klasei
-
-## 1.1 versija
-
-- Vietoje studentas struktūros naudojama Studentas klasė
-- Atlikta programos veikimo greičio analizė naudojant skirtingus optimizavimo flag'us
-
 ## Įdiegimo instrukcija
 
 - Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-2/releases/).
