@@ -110,25 +110,54 @@ void paleisti(container& A,container& A2) {
     int n;
     int m;
     string failoPav;
+    string kelias;
+    cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
+    cout << "Pasirinkite direktorija, kurioje bus sukurti failai: " << endl;
+    cout << "1. Instaliavimo direktorija (gali reiketi paleisti programa kaip administratoriui)" << endl;
+    cout << "2. Kita direktorija" << endl; 
+    cin >> n;
     while (true) {
+        if (n == 1) {
+            kelias = "";
+            break; 
+        }
+        else if (n == 2) {
+            cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
+            cout << "Iveskite direktorijos, kurioje bus sukurti faila absoliutini kelia (absolute path): " << endl;
+            cin >> kelias;
+            kelias = kelias + "\\" ;
+            break;
+        }
+        else {
+            cout << "Tokio pasirinkimo nera. Iveskite is naujo" << endl;
+        }
+    }
+    while (true) {
+        cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
         cout << "Kokiu budu norite pateikti studentu duomenis?" << endl;
         cout << "1. Nuskaityti is failo" << endl;
         cout << "2. Ivesti" << endl;
         cin >> n;
         if (n == 1) {
+            cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
             cout << "1. Pateikti esamo failo pavadinima" << endl;
             cout << "2. Sugeneruoti faila" << endl;
             cin >> n;
             if (n == 1) {
+                cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
                 cout << "Iveskite pilna failo pavadinima (iskaitant .txt)" << endl;
                 cin >> failoPav;
+                cout << "Siek tiek palaukite!" << endl;
                 nuskaitytiFaila(A, failoPav);
                 break;
             }
             else if (n == 2) {
+                cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
                 cout << "Kokio dydzio faila norite sugeneruoti? " << endl;
                 cin >> m;
-                sugeneruotiFaila(m,10,"generuotas.txt");
+                cout << endl;
+                cout << "Siek tiek palaukite!" << endl;
+                sugeneruotiFaila(m,10, kelias+"generuotas.txt");
                 failoPav = "generuotas.txt";
                 nuskaitytiFaila(A, failoPav);
                 break;
@@ -138,6 +167,7 @@ void paleisti(container& A,container& A2) {
             }
         }
         else if (n == 2) {
+            cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
             ivedimasRanka(A);
             break;
         }
@@ -146,7 +176,11 @@ void paleisti(container& A,container& A2) {
         }
     }
     A2 = padalinti(A);
-    isvestiFaila(A, "islaike.txt");
-    isvestiFaila(A2, "neislaike.txt");
+    isvestiFaila(A, kelias+"islaike.txt");
+    isvestiFaila(A2, kelias+"neislaike.txt");
+    cout << endl;
+    cout << setfill('-') << setw(50) << "-" << setfill(' ') << endl;
     cout << "Rezultatai isvesti i failus 'islaike.txt' ir 'neislaike.txt'!";
+    cin.ignore(256, '\n');
+    cin.get();
 }
