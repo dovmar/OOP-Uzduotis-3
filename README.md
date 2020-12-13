@@ -16,7 +16,7 @@ Windows OS
 
 Bet kokia OS
 
- - Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-2/releases/).
+ - Atsiųsti [naujausią versiją](https://github.com/dovmar/OOP-Uzduotis-ę/releases/).
  - Sukompiliuoti programą naudojant CMakeLists.txt failą.
  - Paleisti programą.
 
